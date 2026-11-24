@@ -1,0 +1,139 @@
+[
+ {
+  "name": "provided train80 only",
+  "n_train": 3731,
+  "protocol": "honest",
+  "acc": 0.8206465067778936
+ },
+ {
+  "name": "balanced 1000/class",
+  "n_train": 2000,
+  "protocol": "honest",
+  "acc": 0.7518248175182481
+ },
+ {
+  "name": "balanced 1000/class",
+  "n_train": 2000,
+  "protocol": "realistic",
+  "acc": 0.7518248175182481
+ },
+ {
+  "name": "balanced 2000/class",
+  "n_train": 4000,
+  "protocol": "honest",
+  "acc": 0.7799791449426486
+ },
+ {
+  "name": "balanced 2000/class",
+  "n_train": 4000,
+  "protocol": "realistic",
+  "acc": 0.7799791449426486
+ },
+ {
+  "name": "balanced 5000/class",
+  "n_train": 10000,
+  "protocol": "honest",
+  "acc": 0.7924921793534933
+ },
+ {
+  "name": "balanced 5000/class",
+  "n_train": 10000,
+  "protocol": "realistic",
+  "acc": 0.7924921793534933
+ },
+ {
+  "name": "balanced 10000/class",
+  "n_train": 20000,
+  "protocol": "honest",
+  "acc": 0.8143899895724713
+ },
+ {
+  "name": "balanced 10000/class",
+  "n_train": 20000,
+  "protocol": "realistic",
+  "acc": 0.8143899895724713
+ },
+ {
+  "name": "balanced 30000/class",
+  "n_train": 60000,
+  "protocol": "honest",
+  "acc": 0.8456725755995829
+ },
+ {
+  "name": "balanced 30000/class",
+  "n_train": 60000,
+  "protocol": "realistic",
+  "acc": 0.8456725755995829
+ },
+ {
+  "name": "balanced 100000/class",
+  "n_train": 200000,
+  "protocol": "honest",
+  "acc": 0.8581856100104275
+ },
+ {
+  "name": "balanced 100000/class",
+  "n_train": 200000,
+  "protocol": "realistic",
+  "acc": 0.8581856100104275
+ },
+ {
+  "name": "balanced 250000/class",
+  "n_train": 500000,
+  "protocol": "honest",
+  "acc": 0.8665276329509907
+ },
+ {
+  "name": "balanced 250000/class",
+  "n_train": 500000,
+  "protocol": "realistic",
+  "acc": 0.8665276329509907
+ },
+ {
+  "name": "all (imbalanced)",
+  "n_train": 636362,
+  "protocol": "honest",
+  "acc": 0.8842544316996872
+ },
+ {
+  "name": "all, class_weight=balanced",
+  "n_train": 636362,
+  "protocol": "honest",
+  "acc": 0.8790406673618353,
+  "class_weight": "balanced"
+ },
+ {
+  "name": "all (imbalanced)",
+  "n_train": 636362,
+  "protocol": "realistic",
+  "acc": 0.8842544316996872
+ },
+ {
+  "name": "all, class_weight=balanced",
+  "n_train": 636362,
+  "protocol": "realistic",
+  "acc": 0.8790406673618353,
+  "class_weight": "balanced"
+ },
+ {
+  "name": "balanced 250000/class C=1.0",
+  "n_train": 500000,
+  "protocol": "honest",
+  "acc": 0.8633993743482794,
+  "C": "1.0"
+ },
+ {
+  "name": "balanced 250000/class C=3.0",
+  "n_train": 500000,
+  "protocol": "honest",
+  "acc": 0.8686131386861314,
+  "C": "3.0"
+ },
+ {
+  "name": "balanced 250000/class C=30.0",
+  "n_train": 500000,
+  "protocol": "honest",
+  "acc": 0.8696558915537018,
+  "C": "30.0"
+ }
+]

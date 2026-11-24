@@ -1,0 +1,4 @@
+637467 examples (4661 provided), NBC frac 0.588
+featurized nnz=146.6M in 122s
+provided_weight=1.0: trained in 152s
+saved submission/model.pt (last weight setting)

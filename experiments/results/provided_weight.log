@@ -1,0 +1,6 @@
+excluded 933 rows overlapping held-out data
+636362 examples (3731 provided), NBC frac 0.588
+featurized nnz=146.4M in 107s
+provided_weight=1.0: trained in 122s, accuracy on val20.csv: 0.8843 (n=959)
+provided_weight=3.0: trained in 128s, accuracy on val20.csv: 0.8832 (n=959)
+provided_weight=10.0: trained in 132s, accuracy on val20.csv: 0.8832 (n=959)

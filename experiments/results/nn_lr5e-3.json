@@ -1,0 +1,51 @@
+{
+ "args": {
+  "csv": [
+   "data/processed/all_links.csv"
+  ],
+  "since": "FoxNews=2022-01-01,NBC=2015-01-01",
+  "exclude": [
+   "data/splits/val20.csv"
+  ],
+  "eval": "data/splits/val20.csv",
+  "epochs": 6,
+  "bs": 256,
+  "lr": 0.005,
+  "seed": 0,
+  "out": "experiments/nn_lr5e-3.pt",
+  "log": "experiments/results/nn_lr5e-3.json"
+ },
+ "history": [
+  {
+   "epoch": 1,
+   "train_loss": 0.36670007943996186,
+   "val_acc": 0.8602711157455682
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.27093753920644265,
+   "val_acc": 0.8706986444212722
+  },
+  {
+   "epoch": 3,
+   "train_loss": 0.21320781700987948,
+   "val_acc": 0.8790406673618353
+  },
+  {
+   "epoch": 4,
+   "train_loss": 0.16111812968435044,
+   "val_acc": 0.8706986444212722
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.11961483862877255,
+   "val_acc": 0.8717413972888426
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.09175056378043925,
+   "val_acc": 0.8748696558915537
+  }
+ ],
+ "best_val_acc": 0.8790406673618353
+}

@@ -1,0 +1,9 @@
+{
+ "tfidf": 0.8842544316996872,
+ "fasttext_nn": 0.881126173096976,
+ "distilbert": 0.8852971845672576,
+ "tfidf + fasttext_nn": 0.8905109489051095,
+ "tfidf + distilbert": 0.8936392075078207,
+ "fasttext_nn + distilbert": 0.8957247132429614,
+ "tfidf + fasttext_nn + distilbert": 0.8988529718456726
+}

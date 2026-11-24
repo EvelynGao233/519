@@ -1,0 +1,10 @@
+excluded 931 rows overlapping held-out data
+636536 train / 959 eval, 98M ids, encoded in 57s
+C:\Users\ygao3\OneDrive\Desktop\519-final\src\train_nn.py:95: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:212.)
+  yt = torch.from_numpy(y)
+epoch 1: train loss 0.3860, val acc 0.8582 (38s)
+epoch 2: train loss 0.2977, val acc 0.8655 (38s)
+epoch 3: train loss 0.2609, val acc 0.8749 (38s)
+epoch 4: train loss 0.2335, val acc 0.8738 (37s)
+epoch 5: train loss 0.2152, val acc 0.8738 (38s)
+best val acc 0.8749; saved submission_nn/model.pt

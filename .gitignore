@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.zip
+starter/
+experiments/*.pt
+data/scraped/
+data/processed/
+colab/
+experiments/archive/
+experiments/*.pt
+*.pt
+!submission/model.pt
+experiments/speed8000.csv
+experiments/final_honest/
