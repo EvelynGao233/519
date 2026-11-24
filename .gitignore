@@ -12,3 +12,4 @@ experiments/*.pt
 !submission/model.pt
 experiments/speed8000.csv
 experiments/final_honest/
+hf_upload/

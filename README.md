@@ -42,9 +42,11 @@ data/raw/url_train.csv, data/splits/{train80,val20}.csv
 
 ## Weights and data (not in git: GitHub's 100 MB file limit)
 
-- `submission_final/model.pt` (285 MB), `submission_nn/model.pt` (134 MB),
-  `submission_bert/model.pt` (134 MB): **[Hugging Face link to add]**
-- Scraped dataset (2.16M unique headlines, `data/processed/all_links.csv`): **[Hugging Face link to add]**
+- Model weights, all four models (`final/` = `submission_final/model.pt` 285 MB, `fasttext/`,
+  `distilbert/`, `tfidf/`): <https://huggingface.co/Potatodawang/fox-nbc-headline-classifier>
+- Dataset, 2.16M unique headlines (`data/processed/all_links.csv` as parquet) plus our train80/val20
+  split: <https://huggingface.co/datasets/Potatodawang/fox-nbc-headline-links>
+- `src/upload_hf.py` re-uploads both after `hf auth login`.
 
 ## Reproduce
 
