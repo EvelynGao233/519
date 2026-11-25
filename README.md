@@ -4,20 +4,22 @@ Predict whether a news link comes from **Fox News** or **NBC News** from its hea
 alone (the leaderboard strips host, section and any word containing a digit, e.g.
 `/biden-signs-infrastructure-bill`).
 
-Final model: an equal-weight ensemble of three classifiers trained on 637k scraped headlines.
+Final model: an equal-weight ensemble of three classifiers trained on about 639k headlines
+(course links, our sitemap crawl, and teammate Sihan Wang's crawl including Fox live blogs).
 
 | Model | val20 accuracy (unseen headlines) |
 | --- | --- |
 | Provided baseline (hashed bag-of-words MLP) | 73.9% |
-| Hashed TF-IDF + logistic regression | 88.4% |
-| fastText-style network (sub-word EmbeddingBag + MLP) | 88.1% |
+| Hashed TF-IDF + logistic regression | 88.5% |
+| fastText-style network (sub-word EmbeddingBag + MLP) | 88.4% |
 | DistilBERT, fine-tuned, re-implemented in plain PyTorch | 88.5% |
 | **Ensemble of the three (submitted)** | **89.9%** |
 
-Leaderboard (`url_val16k`, 8,000 links): **96.09%** (final, Nov 24; 96.34% before adding teammate links). val20 is 20% of `url_train.csv` with every
-one of its headlines removed from all training data, so it measures generalization; the
-leaderboard is inflated by test headlines that also appear in the public sitemaps we crawled
-(see the report, Section 6). The final model contains **no lookup of training headlines**.
+Leaderboard (`url_val16k`, 8,000 links): **96.09%** (final, Nov 24; 96.34% before adding the
+teammate links). val20 is 20% of `url_train.csv` with every one of its headlines removed from all
+training data, so it measures generalization; the leaderboard is inflated by test headlines that
+also appear in the public sitemaps we crawled (see the report, Section 6). The final model
+contains **no lookup of training headlines**.
 
 ## Repository layout
 
@@ -38,13 +40,15 @@ src/
 notebooks/finetune_distilbert.ipynb   DistilBERT fine-tuning on a Colab T4
 experiments/        CV comparisons, learning curve, ensemble evaluation, port verification, results/
 data/raw/url_train.csv, data/splits/{train80,val20}.csv
+data/teammate/      (not in git) sihan_scraped_dated.csv, sihan_cdx.csv from
+                    github.com/33sihan/519-final-project; build_dataset.py merges them if present
 ```
 
 ## Weights and data (not in git: GitHub's 100 MB file limit)
 
 - Model weights, all four models (`final/` = `submission_final/model.pt` 285 MB, `fasttext/`,
   `distilbert/`, `tfidf/`): <https://huggingface.co/Potatodawang/fox-nbc-headline-classifier>
-- Dataset, 2.16M unique headlines (`data/processed/all_links.csv` as parquet) plus our train80/val20
+- Dataset, 2,157,832 unique headlines (`data/processed/all_links.csv` as parquet) plus our train80/val20
   split: <https://huggingface.co/datasets/Potatodawang/fox-nbc-headline-links>
 - `src/upload_hf.py` re-uploads both after `hf auth login`.
 
@@ -62,6 +66,8 @@ python -m venv .venv
    ```bash
    python src/crawl.py --site fox --since 2000-01-01 --max-sitemaps 1000
    python src/crawl.py --site nbc --since 2005-01-01 --max-sitemaps 1500
+   # optional: copy cdx.csv and scraped_dated.csv from github.com/33sihan/519-final-project
+   # to data/teammate/sihan_cdx.csv and data/teammate/sihan_scraped_dated.csv
    python src/build_dataset.py
    ```
 2. Experiments: `experiments/cv_sklearn.py`, `cv_baseline.py`, `learning_curve.py`, `plot_learning_curve.py`
@@ -81,6 +87,11 @@ python -m venv .venv
    python eval_project_b.py --model submission_final/model.py --preprocess submission_final/preprocess.py --weights submission_final/model.pt --csv data/splits/val20.csv
    ```
 
+## Team
+
+Yuxin Gao, Sihan Wang ([parallel wide-and-deep model and crawl](https://github.com/33sihan/519-final-project)),
+Weiyi Fan ([TF-IDF experiments and crawl](https://github.com/yifan9898/cis5190-projB)).
+
 ## Report
 
-Full write-up: **[report link]**
+The written report and video are submitted on Gradescope.
