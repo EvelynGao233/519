@@ -1,6 +1,7 @@
 """Merge provided + scraped links into one clean dataset.
 
-Input:  data/raw/url_train.csv, data/scraped/{fox,nbc}_links.csv (whichever exist)
+Input:  data/raw/url_train.csv, data/scraped/{fox,nbc}_links.csv,
+        data/teammate/sihan_{scraped_dated,cdx}.csv (whichever exist)
 Output: data/processed/all_links.csv  columns: url, label, source, date, headline
         (headline = the leaderboard-style reduced link, e.g. '/some-headline')
 
@@ -37,6 +38,17 @@ def main():
             print(f"loaded {len(s):>7} scraped {site} links")
         else:
             print(f"(no {p.name} yet)")
+    # links collected by teammate Sihan Wang: sitemap links with dates, and Fox live-news
+    # links from the Internet Archive's CDX index (no date; the sitemaps never list them)
+    for name, has_date in [("sihan_scraped_dated.csv", True), ("sihan_cdx.csv", False)]:
+        p = ROOT / "data/teammate" / name
+        if p.exists():
+            s = pd.read_csv(p, dtype=str)
+            s["url"] = s.url.str.replace(r"\.amp$", "", regex=True)
+            s["date"] = s["date"] if has_date else ""
+            s["source"] = "teammate"
+            frames.append(s[["url", "source", "date"]])
+            print(f"loaded {len(s):>7} teammate links from {name}")
     df = pd.concat(frames, ignore_index=True)
     n0 = len(df)
     df["label"] = df.url.map(label_from_url)
@@ -44,7 +56,7 @@ def main():
     df["headline"] = df.url.map(reduce_url)
     df = df[df.headline != "/"]
     n1 = len(df)
-    df["prio"] = (df.source != "provided").astype(int)
+    df["prio"] = df.source.map({"provided": 0, "scraped": 1, "teammate": 2})
     df = df.sort_values("prio").drop_duplicates(["headline", "label"]).drop(columns="prio")
     n2 = len(df)
     amb = df.groupby("headline").label.nunique()
@@ -58,7 +70,7 @@ def main():
     full = pd.concat(frames, ignore_index=True)
     full["label"] = full.url.map(label_from_url)
     full["headline"] = full.url.map(reduce_url)
-    scraped = full[full.source == "scraped"]
+    scraped = full[full.source != "provided"]
     pv = full[full.source == "provided"]
     for lab in ["FoxNews", "NBC"]:
         have = set(scraped[scraped.label == lab].headline)

@@ -13,3 +13,4 @@ experiments/*.pt
 experiments/speed8000.csv
 experiments/final_honest/
 hf_upload/
+data/teammate/

@@ -47,7 +47,9 @@ def load(csvs, exclude=(), max_per_class=0, seed=0, since=""):
                 thr = lab.map(lambda l: cut.get(l, ""))
             else:
                 thr = since
-            d = d[d.provided | (d.date.fillna("") >= thr)]
+            # undated teammate rows are the Fox live-news links from the CDX index: keep them
+            undated_teammate = d["source"].eq("teammate") & d.date.fillna("").eq("") if "source" in d else False
+            d = d[d.provided | (d.date.fillna("") >= thr) | undated_teammate]
         frames.append(d[["url", "provided"]])
     d = pd.concat(frames, ignore_index=True).dropna(subset=["url"])
     d["label"] = d.url.map(_label)
