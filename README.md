@@ -14,7 +14,7 @@ Final model: an equal-weight ensemble of three classifiers trained on 637k scrap
 | DistilBERT, fine-tuned, re-implemented in plain PyTorch | 88.5% |
 | **Ensemble of the three (submitted)** | **89.9%** |
 
-Leaderboard (`url_val16k`, 8,000 links): **96.34%**. val20 is 20% of `url_train.csv` with every
+Leaderboard (`url_val16k`, 8,000 links): **96.09%** (final, Nov 24; 96.34% before adding teammate links). val20 is 20% of `url_train.csv` with every
 one of its headlines removed from all training data, so it measures generalization; the
 leaderboard is inflated by test headlines that also appear in the public sitemaps we crawled
 (see the report, Section 6). The final model contains **no lookup of training headlines**.
